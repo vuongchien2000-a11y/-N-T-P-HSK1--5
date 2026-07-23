@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ôn tập HSK 1 — Bài 1-5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#e8601c;
+    --orange-dark:#c94f13;
+    --orange-light:#fff1e6;
+    --red:#c0392b;
+    --green:#1e8e5a;
+    --green-light:#e7f7ef;
+    --red-light:#fdecea;
+    --ink:#2b2320;
+    --sub:#6b5f58;
+    --card:#ffffff;
+    --bg:#faf6f2;
+    --line:#efe1d4;
+    --gold:#d9a441;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+    line-height:1.6;
+    padding-bottom:60px;
+  }
+  .hanzi{font-family:'Noto Sans SC','Be Vietnam Pro',sans-serif;}
+  header.top{
+    background:linear-gradient(120deg,var(--orange) 0%,var(--orange-dark) 55%,#a8380f 100%);
+    color:#fff;
+    padding:34px 20px 26px;
+    text-align:center;
+    box-shadow:0 4px 18px rgba(200,90,20,.25);
+    position:relative;
+    overflow:hidden;
+  }
+  header.top::before{
+    content:"你好 谢谢 名字 老师 家人";
+    position:absolute; inset:0;
+    font-family:'Noto Sans SC',sans-serif;
+    font-size:90px; font-weight:900;
+    color:rgba(255,255,255,.06);
+    white-space:nowrap; letter-spacing:20px;
+    display:flex; align-items:center;
+    transform:rotate(-4deg) translateY(10px);
+  }
+  header.top h1{
+    margin:0 0 6px; font-size:clamp(22px,4vw,32px); font-weight:800; position:relative;
+  }
+  header.top p{margin:0; opacity:.95; font-size:15px; position:relative;}
+  .badge-row{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:14px; position:relative;}
+  .badge{
+    background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35);
+    padding:5px 14px; border-radius:20px; font-size:13px; font-weight:600;
+  }
+
+  nav.tabs{
+    max-width:980px; margin:22px auto 0; padding:0 16px;
+    display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
+    position:sticky; top:0; z-index:50; background:var(--bg);
+    padding-top:14px; padding-bottom:10px;
+  }
+  .tab-btn{
+    border:2px solid var(--orange);
+    background:#fff; color:var(--orange-dark);
+    font-weight:700; font-size:14.5px;
+    padding:9px 18px; border-radius:30px; cursor:pointer;
+    transition:.15s; white-space:nowrap;
+  }
+  .tab-btn:hover{background:var(--orange-light);}
+  .tab-btn.active{background:var(--orange); color:#fff; box-shadow:0 3px 10px rgba(200,90,20,.35);}
+
+  main{max-width:980px; margin:0 auto; padding:10px 16px 40px;}
+  .lesson{display:none;}
+  .lesson.active{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .lesson-head{
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    padding:20px 22px; margin:18px 0 20px;
+    box-shadow:0 2px 10px rgba(120,80,40,.06);
+  }
+  .lesson-head h2{margin:0 0 4px; color:var(--orange-dark); font-size:22px;}
+  .lesson-head .cn-title{font-family:'Noto Sans SC',sans-serif; font-size:26px; font-weight:700; color:var(--ink); margin:2px 0;}
+  .lesson-head .vn-title{color:var(--sub); font-style:italic;}
+
+  .section-title{
+    display:flex; align-items:center; gap:10px;
+    margin:30px 0 14px; font-size:19px; font-weight:800; color:var(--orange-dark);
+  }
+  .section-title .num{
+    background:var(--orange); color:#fff; width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;
+  }
+  .section-title small{font-weight:500; color:var(--sub); font-size:13px; margin-left:4px;}
+
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:18px 20px; margin-bottom:16px; box-shadow:0 2px 8px rgba(120,80,40,.05);
+  }
+  .card h4{margin:0 0 10px; color:var(--orange-dark); font-size:15.5px;}
+
+  /* Hội thoại */
+  .dialogue{border-left:4px solid var(--gold); padding:10px 16px; margin-bottom:14px; background:var(--orange-light); border-radius:0 10px 10px 0;}
+  .dialogue .line{margin:5px 0; font-size:15px;}
+  .dialogue .line .who{font-weight:800; color:var(--orange-dark); margin-right:4px;}
+  .dialogue .cn{font-family:'Noto Sans SC',sans-serif; font-size:17px; font-weight:600;}
+  .dialogue .py{color:var(--sub); font-size:13.5px; margin-left:4px;}
+  .dialogue .vn{color:#4a4038; font-size:14px; margin-left:26px;}
+
+  /* Từ vựng table */
+  table.vocab{width:100%; border-collapse:collapse; font-size:14.5px;}
+  table.vocab th{
+    background:var(--orange); color:#fff; text-align:left; padding:9px 10px; font-size:13px;
+  }
+  table.vocab td{padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.vocab tr:nth-child(even) td{background:#fffaf5;}
+  table.vocab .cn{font-family:'Noto Sans SC',sans-serif; font-size:17px; font-weight:700; color:var(--ink);}
+  table.vocab .py{color:var(--orange-dark); font-style:italic; white-space:nowrap;}
+  table.vocab .pos{color:#9a8b7f; font-size:12.5px; white-space:nowrap;}
+
+  .grammar-point{border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:0 10px 10px 0; padding:12px 16px; margin-bottom:12px; background:#fffdfb;}
+  .grammar-point .gp-title{font-weight:700; color:var(--orange-dark); margin-bottom:4px; font-size:15px;}
+  .grammar-point .gp-vn{color:var(--sub); font-size:13.5px; margin-bottom:6px;}
+  .grammar-point ul{margin:6px 0 0; padding-left:20px;}
+  .grammar-point li{margin-bottom:3px; font-size:14.5px;}
+  .grammar-point .ex-cn{font-family:'Noto Sans SC',sans-serif; font-weight:600;}
+
+  .note-box{background:#f4f0ff; border:1px solid #ddd3fb; border-radius:12px; padding:14px 16px; margin-bottom:12px; font-size:14px;}
+  .note-box b{color:#5b3fbf;}
+  .culture-box{background:#eefaf3; border:1px solid #cdeedd; border-radius:12px; padding:14px 16px; font-size:14px;}
+  .culture-box b{color:var(--green);}
+
+  /* Exercises */
+  .ex-block{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 20px; margin-bottom:18px;}
+  .ex-block .ex-title{font-weight:800; color:var(--orange-dark); font-size:16px; margin-bottom:2px; display:flex; align-items:center; gap:8px;}
+  .ex-block .ex-title .tag{background:var(--gold); color:#fff; font-size:11px; padding:2px 9px; border-radius:10px; font-weight:700;}
+  .ex-block .ex-desc{color:var(--sub); font-size:13.5px; margin-bottom:12px;}
+  .q{margin-bottom:14px; padding-bottom:14px; border-bottom:1px dashed var(--line);}
+  .q:last-of-type{border-bottom:none;}
+  .q .q-text{font-weight:600; margin-bottom:8px; font-size:14.5px;}
+  .q .q-text .cn{font-family:'Noto Sans SC',sans-serif; font-size:16.5px;}
+  .options{display:flex; flex-direction:column; gap:6px;}
+  .opt{
+    display:flex; align-items:center; gap:8px; padding:8px 12px;
+    border:1.5px solid var(--line); border-radius:10px; cursor:pointer; font-size:14px;
+    transition:.12s;
+  }
+  .opt:hover{border-color:var(--gold); background:#fffaf0;}
+  .opt input{accent-color:var(--orange);}
+  .opt.correct{border-color:var(--green); background:var(--green-light); font-weight:600;}
+  .opt.wrong{border-color:var(--red); background:var(--red-light);}
+  input.blank-input, select.match-select{
+    border:1.5px solid var(--line); border-radius:8px; padding:7px 10px; font-size:14.5px;
+    font-family:'Noto Sans SC','Be Vietnam Pro',sans-serif; width:220px; max-width:100%;
+  }
+  input.blank-input:focus, select.match-select:focus{outline:none; border-color:var(--orange);}
+  input.blank-input.correct{border-color:var(--green); background:var(--green-light);}
+  input.blank-input.wrong{border-color:var(--red); background:var(--red-light);}
+  .feedback{font-size:13px; margin-top:5px; padding:6px 10px; border-radius:8px; display:none;}
+  .feedback.show{display:block;}
+  .feedback.ok{background:var(--green-light); color:var(--green);}
+  .feedback.bad{background:var(--red-light); color:var(--red);}
+  .match-row{display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap;}
+  .match-row .left-txt{min-width:230px; font-weight:600;}
+  .match-row .left-txt .cn{font-family:'Noto Sans SC',sans-serif; font-size:16px;}
+
+  .check-btn{
+    background:var(--orange); color:#fff; border:none; padding:10px 22px; border-radius:24px;
+    font-weight:700; font-size:14px; cursor:pointer; margin-top:6px; box-shadow:0 3px 10px rgba(200,90,20,.3);
+  }
+  .check-btn:hover{background:var(--orange-dark);}
+  .score-line{margin-top:10px; font-weight:700; font-size:14.5px; display:none;}
+  .score-line.show{display:block;}
+
+  .lesson-summary{
+    background:linear-gradient(120deg,#fff,var(--orange-light)); border:1.5px solid var(--gold);
+    border-radius:16px; padding:20px 22px; margin-top:26px; text-align:center;
+  }
+  .lesson-summary .total-score{font-size:28px; font-weight:900; color:var(--orange-dark); margin:6px 0;}
+  .lesson-summary button{
+    background:var(--ink); color:#fff; border:none; padding:11px 26px; border-radius:24px;
+    font-weight:700; cursor:pointer; margin-top:8px; font-size:14px;
+  }
+
+  footer{text-align:center; color:var(--sub); font-size:12.5px; margin-top:30px; padding:0 20px;}
+
+  @media(max-width:600px){
+    .tab-btn{padding:8px 13px; font-size:13px;}
+    table.vocab{font-size:13px;}
+    .match-row{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>标准教程 HSK 1 · Ôn tập tổng hợp</h1>
+  <p>Từ vựng &amp; Ngữ pháp Bài 1 – Bài 5 · Giáo trình chuẩn HSK (Quyển 1)</p>
+  <div class="badge-row">
+    <span class="badge">📖 Lý thuyết đầy đủ</span>
+    <span class="badge">✏️ Bài tập đa dạng</span>
+    <span class="badge">✅ Tự kiểm tra đáp án</span>
+  </div>
+</header>
+
+<nav class="tabs" id="tabNav"></nav>
+
+<main id="main"></main>
+
+<footer>Tài liệu ôn tập biên soạn dựa trên nội dung 《标准教程 HSK》Quyển 1 — Bài 1 đến Bài 5. Dùng để tự học và ôn luyện.</footer>
+
+<script>
+/* ================= DATA ================= */
+const lessons = [
+{
+  id:1,
+  tab:"Bài 1",
+  cnTitle:"你好！", pinyinTitle:"Nǐ hǎo!", vnTitle:"Chào anh!",
+  dialogues:[
+    {a:{cn:"你好！",py:"Nǐ hǎo!",vn:"Chào anh!"}, b:{cn:"你好！",py:"Nǐ hǎo!",vn:"Chào anh!"}},
+    {a:{cn:"您好！",py:"Nín hǎo!",vn:"Chào ông/bà!"}, b:{cn:"你们好！",py:"Nǐmen hǎo!",vn:"Chào anh/chị!"}},
+    {a:{cn:"对不起！",py:"Duìbuqǐ!",vn:"Xin lỗi!"}, b:{cn:"没关系！",py:"Méi guānxi!",vn:"Không sao đâu!"}},
+  ],
+  vocab:[
+    ["你","nǐ","đại từ","(số ít) anh, chị, bạn"],
+    ["好","hǎo","tính từ","khỏe, tốt"],
+    ["您","nín","đại từ","(lịch sự) ông, bà, ngài"],
+    ["你们","nǐmen","đại từ","(số nhiều) các anh, các chị, các bạn"],
+    ["对不起","duìbuqǐ","động từ","xin lỗi"],
+    ["没关系","méi guānxi","cụm từ","không sao đâu, không có vấn đề gì"],
+  ],
+  grammarHTML:`
+    <div class="grammar-point">
+      <div class="gp-title">Mẫu câu chào hỏi cơ bản</div>
+      <div class="gp-vn">你好 dùng khi chào một người ngang hàng/thân mật; 您好 dùng khi chào người lớn tuổi, cấp trên (thể hiện sự lịch sự, tôn trọng); 你们好 dùng khi chào một nhóm nhiều người.</div>
+      <ul>
+        <li class="ex-cn">你好！<span style="font-family:'Be Vietnam Pro';font-weight:400;color:var(--sub)"> — Chào bạn! (thân mật)</span></li>
+        <li class="ex-cn">您好！<span style="font-family:'Be Vietnam Pro';font-weight:400;color:var(--sub)"> — Chào ông/bà! (lịch sự)</span></li>
+        <li class="ex-cn">你们好！<span style="font-family:'Be Vietnam Pro';font-weight:400;color:var(--sub)"> — Chào các bạn! (số nhiều)</span></li>
+      </ul>
+    </div>
+    <div class="grammar-point">
+      <div class="gp-title">Cặp thoại xin lỗi — đáp lễ</div>
+      <div class="gp-vn">对不起 (xin lỗi) thường được đáp lại bằng 没关系 (không sao đâu).</div>
+    </div>`,
+  phoneticsHTML:`
+    <div class="note-box"><b>Ngữ âm trọng tâm:</b> Thanh mẫu nhóm 1 (b p m f · d t n l · g k h · j q x); vận mẫu nhóm 1 (i u ü · a ia ua · o uo · e ie üe · ai uai · ei uei · ao iao); 4 thanh điệu cơ bản (thanh 1: ˉ, thanh 2: ˊ, thanh 3: ˇ, thanh 4: ˋ).<br><br>
+    <b>Biến điệu thanh 3 + thanh 3:</b> Khi hai âm tiết mang thanh 3 đi liền nhau, âm tiết thứ nhất đọc thành thanh 2 (nhưng vẫn ghi dấu thanh 3 khi viết). Ví dụ: 你 (nǐ) + 好 (hǎo) → đọc thành <i>ní hǎo</i>.</div>`,
+  hanziHTML:`<div class="note-box"><b>Nét cơ bản:</b> 一 (ngang), 丨 (sổ), 丿 (phẩy), 丶 (chấm), 乛 (mác).<br><b>Chữ độc thể (số đếm):</b> 一(1) 二(2) 三(3) 十(10) 八(8) 六(6).</div>`,
+  exercises:[
+    {type:"mcq", title:"Trắc nghiệm từ vựng", tag:"5 câu", desc:"Chọn đáp án đúng nhất.", questions:[
+      {q:'"你好!" nghĩa là gì?', opts:["Cảm ơn anh!","Chào anh!","Xin lỗi!","Tạm biệt!"], ans:1},
+      {q:'Từ nào dùng để chào một cách lịch sự, trang trọng với người lớn tuổi/cấp trên?', opts:["你好","你们好","您好","再见"], ans:2},
+      {q:'"你们" nghĩa là gì?', opts:["Tôi","Anh/chị (số ít)","Các anh/các chị (số nhiều)","Ông/bà (kính trọng)"], ans:2},
+      {q:'Nghe câu "对不起!", bạn nên đáp lại bằng câu nào?', opts:["你好!","没关系!","谢谢!","再见!"], ans:1},
+      {q:'"好" trong "你好" có nghĩa gốc là gì?', opts:["Xin chào","Khỏe, tốt","Xin lỗi","Cảm ơn"], ans:1},
+    ]},
+    {type:"blank", title:"Điền vào chỗ trống", tag:"5 câu", desc:"Dùng các từ: 你好 / 您好 / 你们好 / 对不起 / 没关系", questions:[
+      {q:'Gặp bạn cùng lớp vào buổi sáng, bạn nói: "____!"', ans:["你好","nǐ hǎo","ni hao"]},
+      {q:'Gặp thầy hiệu trưởng lớn tuổi, bạn cần nói lịch sự: "____!"', ans:["您好","nín hǎo","nin hao"]},
+      {q:'Bước vào lớp học đông người, bạn chào cả lớp: "____!"', ans:["你们好","nǐmen hǎo","nimen hao"]},
+      {q:'Bạn vô tình giẫm chân bạn khác, bạn nói: "____!"', ans:["对不起","duìbuqǐ","duibuqi"]},
+      {q:'Có người xin lỗi bạn, bạn đáp lại: "____!"', ans:["没关系","méi guānxi","mei guanxi"]},
+    ]},
+    {type:"mcq", title:"Tình huống giao tiếp", tag:"4 câu", desc:"Chọn cách chào phù hợp với tình huống.", questions:[
+      {q:'Bạn gặp một nhóm khách (nhiều người), bạn nên nói?', opts:["你好","您好","你们好","没关系"], ans:2},
+      {q:'Bạn muốn chào ông/bà một cách kính trọng, mở đầu bằng?', opts:["你好","您好","你们","谢谢"], ans:1},
+      {q:'Trong câu "您好!", từ "您" thể hiện điều gì?', opts:["Số nhiều","Thái độ lịch sự, tôn trọng","Phủ định","Nghi vấn"], ans:1},
+      {q:'"你" và "您" khác nhau chủ yếu ở điểm nào?', opts:["Ý nghĩa hoàn toàn khác nhau","Mức độ lịch sự/trang trọng","Số ít và số nhiều","Không khác nhau"], ans:1},
+    ]},
+    {type:"match", title:"Nối câu nói — câu đáp phù hợp", tag:"4 câu", desc:"Chọn đáp án đúng cho mỗi ô ở cột phải.",
+      left:["你好！","您好！","对不起！","你们好！"],
+      options:["没关系！","你好！","你们好！","您好！"],
+      ans:[1,3,0,2]
+    },
+    {type:"order", title:"Sắp xếp chữ thành từ/câu đúng", tag:"4 câu", desc:"Sắp xếp các chữ Hán cho trước thành từ hoặc câu đúng.", questions:[
+      {words:["好","你"], ans:"你好"},
+      {words:["好","您"], ans:"您好"},
+      {words:["好","你们"], ans:"你们好"},
+      {words:["起","不","对"], ans:"对不起"},
+    ]},
+  ]
+},
+{
+  id:2,
+  tab:"Bài 2",
+  cnTitle:"谢谢你！", pinyinTitle:"Xièxie nǐ!", vnTitle:"Cảm ơn anh!",
+  dialogues:[
+    {a:{cn:"谢谢！",py:"Xièxie!",vn:"Cảm ơn!"}, b:{cn:"不谢！",py:"Bú xiè!",vn:"Không cần cảm ơn đâu!"}},
+    {a:{cn:"谢谢你！",py:"Xièxie nǐ!",vn:"Cảm ơn anh!"}, b:{cn:"不客气！",py:"Bú kèqi!",vn:"Đừng khách sáo!"}},
+    {a:{cn:"再见！",py:"Zàijiàn!",vn:"Tạm biệt!"}, b:{cn:"再见！",py:"Zàijiàn!",vn:"Tạm biệt!"}},
+  ],
+  vocab:[
+    ["谢谢","xièxie","động từ","cảm ơn"],
+    ["不","bù","phó từ","không cần, không, đừng"],
+    ["不客气","bú kèqi","cụm từ","đừng khách sáo, không có gì"],
+    ["再见","zàijiàn","động từ","tạm biệt"],
+  ],
+  grammarHTML:`
+    <div class="grammar-point">
+      <div class="gp-title">Mẫu câu cảm ơn — đáp lễ</div>
+      <div class="gp-vn">Khi được cảm ơn, có thể đáp ngắn gọn bằng 不谢 hoặc lịch sự hơn bằng 不客气. 谢谢 có thể đứng một mình hoặc thêm đối tượng phía sau: 谢谢 + 你.</div>
+      <ul>
+        <li class="ex-cn">谢谢你！<span style="font-family:'Be Vietnam Pro';font-weight:400;color:var(--sub)"> — Cảm ơn anh!</span></li>
+        <li class="ex-cn">不客气！<span style="font-family:'Be Vietnam Pro';font-weight:400;color:var(--sub)"> — Đừng khách sáo! (đáp lễ lịch sự)</span></li>
+      </ul>
+    </div>
+    <div class="grammar-point">
+      <div class="gp-title">Phó từ phủ định 不</div>
+      <div class="gp-vn">不 mang nghĩa phủ định "không". Đây là phó từ phủ định quan trọng, sẽ xuất hiện nhiều trong các bài sau (không cần, không phải...).</div>
+    </div>`,
+  phoneticsHTML:`
+    <div class="note-box"><b>Thanh mẫu nhóm 2:</b> zh ch sh r · z c s.<br><br>
+    <b>Thanh nhẹ (轻声):</b> Ngoài 4 thanh cơ bản, tiếng Trung còn một thanh đọc ngắn và nhẹ, gọi là thanh nhẹ — không ghi dấu thanh. Ví dụ: 谢谢 (chữ 谢 thứ hai đọc nhẹ), 妈妈, 爸爸.<br><br>
+    <b>Quy tắc ghi dấu thanh điệu:</b> Dấu thanh ghi trên nguyên âm có độ mở miệng lớn hơn, theo thứ tự ưu tiên a &gt; o/e &gt; i/u/ü; riêng iu thì dấu ghi trên u.<br><br>
+    <b>Quy tắc viết giản lược:</b> Khi thanh mẫu đứng trước, ba vận mẫu <b>iou · uei · uen</b> được viết giản lược thành <b>iu · ui · un</b> (VD: niu, gui, lun).</div>`,
+  hanziHTML:`<div class="note-box"><b>Nét cơ bản:</b> 横折 (ngang gập), 竖折 (sổ gập), 竖钩 (sổ móc).<br><b>Chữ độc thể:</b> 口 (miệng), 见 (nhìn thấy), 山 (núi), 小 (nhỏ), 不 (không).</div>`,
+  exercises:[
+    {type:"mcq", title:"Trắc nghiệm từ vựng", tag:"5 câu", desc:"Chọn đáp án đúng nhất.", questions:[
+      {q:'"谢谢!" nghĩa là gì?', opts:["Xin lỗi","Cảm ơn","Tạm biệt","Không sao"], ans:1},
+      {q:'"不客气!" nghĩa là gì?', opts:["Không có gì/Đừng khách sáo","Không sao đâu","Xin lỗi","Tạm biệt"], ans:0},
+      {q:'"再见!" thường dùng khi nào?', opts:["Khi gặp lần đầu","Khi chia tay","Khi cảm ơn","Khi xin lỗi"], ans:1},
+      {q:'"不" là loại từ gì và mang nghĩa gì?', opts:["Danh từ - con số","Phó từ phủ định - không","Đại từ - tôi","Trợ từ nghi vấn"], ans:1},
+      {q:'Câu nào dùng để đáp lại lời cảm ơn "谢谢你!" một cách lịch sự?', opts:["没关系","不客气","对不起","再见"], ans:1},
+    ]},
+    {type:"blank", title:"Điền vào chỗ trống", tag:"5 câu", desc:"Dùng các từ: 谢谢 / 不谢 / 不客气 / 再见", questions:[
+      {q:'Ai đó giúp bạn xách đồ, bạn nói: "____!"', ans:["谢谢","xièxie","xiexie"]},
+      {q:'Đáp lại câu "谢谢你!" một cách lịch sự, bạn nói: "____!"', ans:["不客气","bú kèqi","bu keqi"]},
+      {q:'Trước khi chia tay bạn bè, bạn nói: "____!"', ans:["再见","zàijiàn","zaijian"]},
+      {q:'Đáp ngắn gọn cho lời "谢谢!", bạn có thể nói: "____!"', ans:["不谢","bú xiè","bu xie"]},
+      {q:'Bạn nhận được quà, bạn nói "____ 你！" để cảm ơn.', ans:["谢谢","xièxie","xiexie"]},
+    ]},
+    {type:"mcq", title:"Ngữ âm — Thanh nhẹ &amp; quy tắc ghép âm", tag:"4 câu", desc:"Vận dụng kiến thức ngữ âm đã học.", questions:[
+      {q:'Chữ 谢 thứ hai trong "谢谢" thường được đọc theo thanh điệu nào?', opts:["Thanh 1","Thanh 2","Thanh 3","Thanh nhẹ (nhẹ, ngắn)"], ans:3},
+      {q:'Âm tiết "iou" khi có thanh mẫu đứng trước được viết giản lược thành?', opts:["iu","you","ioo","iou (không đổi)"], ans:0},
+      {q:'Dấu thanh điệu trong âm tiết có nhiều nguyên âm được ghi trên nguyên âm nào?', opts:["Nguyên âm đầu tiên","Nguyên âm có độ mở miệng lớn hơn (ưu tiên a, o/e, i/u/ü)","Nguyên âm cuối cùng","Không ghi dấu"], ans:1},
+      {q:'"uei" khi ghép với thanh mẫu (VD d+uei) được viết giản lược thành?', opts:["dui","duei (giữ nguyên)","dei","dwei"], ans:0},
+    ]},
+    {type:"match", title:"Nối câu nói — câu đáp phù hợp", tag:"4 câu", desc:"Chọn đáp án đúng cho mỗi ô ở cột phải.",
+      left:["谢谢！","谢谢你！","再见！","对不起！"],
+      options:["不谢！","不客气！","再见！","没关系！"],
+      ans:[0,1,2,3]
+    },
+    {type:"order", title:"Sắp xếp chữ thành từ/câu đúng", tag:"4 câu", desc:"Sắp xếp các chữ Hán cho trước thành từ hoặc câu đúng.", questions:[
+      {words:["谢","谢"], ans:"谢谢"},
+      {words:["气","客","不"], ans:"不客气"},
+      {words:["见","再"], ans:"再见"},
+      {words:["谢","不"], ans:"不谢"},
+    ]},
+  ]
+},
+{
+  id:3,
+  tab:"Bài 3",
+  cnTitle:"你叫什么名字？", pinyinTitle:"Nǐ jiào shénme míngzi?", vnTitle:"Cô tên gì?",
+  dialogues:[
+    {a:{cn:"你叫什么名字？",py:"Nǐ jiào shénme míngzi?",vn:"Cô tên gì?"}, b:{cn:"我叫李月。",py:"Wǒ jiào Lǐ Yuè.",vn:"Tôi tên là Lý Nguyệt."}},
+    {a:{cn:"你是老师吗？",py:"Nǐ shì lǎoshī ma?",vn:"Cô là cô giáo phải không?"}, b:{cn:"我不是老师，我是学生。",py:"Wǒ bú shì lǎoshī, wǒ shì xuésheng.",vn:"Không phải, tôi là học sinh."}},
+    {a:{cn:"你是中国人吗？",py:"Nǐ shì Zhōngguó rén ma?",vn:"Bạn là người Trung Quốc phải không?"}, b:{cn:"我不是中国人，我是美国人。",py:"Wǒ bú shì Zhōngguó rén, wǒ shì Měiguó rén.",vn:"Không phải, mình là người Mỹ."}},
+  ],
+  vocab:[
+    ["叫","jiào","động từ","tên (là)"],
+    ["什么","shénme","đại từ","gì, cái gì"],
+    ["名字","míngzi","danh từ","tên"],
+    ["我","wǒ","đại từ","tôi, ta, mình"],
+    ["是","shì","động từ","là"],
+    ["老师","lǎoshī","danh từ","thầy/cô giáo"],
+    ["吗","ma","trợ từ","dùng cuối câu hỏi"],
+    ["学生","xuésheng","danh từ","học sinh"],
+    ["人","rén","danh từ","người"],
+    ["李月 / 中国 / 美国","Lǐ Yuè / Zhōngguó / Měiguó","danh từ riêng","Lý Nguyệt / Trung Quốc / nước Mỹ"],
+  ],
+  grammarHTML:`
+    <div class="grammar-point">
+      <div class="gp-title">1. Đại từ nghi vấn "什么"</div>
+      <div class="gp-vn">什么 dùng trong câu nghi vấn, có thể đứng một mình làm tân ngữ hoặc kết hợp với danh từ phía sau làm tân ngữ.</div>
+      <ul>
+        <li class="ex-cn">你叫什么名字？</li>
+        <li class="ex-cn">这是什么？</li>
+        <li class="ex-cn">这是什么书？</li>
+      </ul>
+    </div>
+    <div class="grammar-point">
+      <div class="gp-title">2. Câu chữ "是"</div>
+      <div class="gp-vn">Câu có từ 是 dùng để biểu đạt người/sự vật là gì hoặc thuộc về cái gì. Dạng phủ định thêm 不 trước 是: <b>Chủ ngữ + (不) 是 + Danh từ/Cụm danh từ</b>.</div>
+      <ul>
+        <li class="ex-cn">李月是老师。</li>
+        <li class="ex-cn">我是美国人。</li>
+        <li class="ex-cn">我不是老师。</li>
+      </ul>
+    </div>
+    <div class="grammar-point">
+      <div class="gp-title">3. Câu hỏi với "吗"</div>
+      <div class="gp-vn">Trợ từ nghi vấn 吗 đặt ở cuối câu trần thuật để tạo thành câu hỏi: <b>Câu trần thuật + 吗？</b></div>
+      <ul>
+        <li class="ex-cn">你是美国人吗？</li>
+        <li class="ex-cn">你是老师吗？</li>
+      </ul>
+    </div>`,
+  phoneticsHTML:`<div class="note-box"><b>Phát âm phân biệt:</b> j, q, x (âm mặt lưỡi, đầu lưỡi gần ngạc cứng) và z, c, s (âm đầu lưỡi trước, gần răng). Cần chú ý luồng hơi và vị trí lưỡi khi luyện tập.</div>`,
+  hanziHTML:`<div class="note-box"><b>Nét cơ bản:</b> 横折钩 (ngang gập móc), 卧钩 (nằm móc).<br><b>Chữ độc thể:</b> 月 (mặt trăng), 心 (trái tim), 中 (giữa), 人 (người).<br><b>Thứ tự nét:</b> ngang trước sổ sau (十, 工); phẩy trước mác sau (八, 人).</div>`,
+  exercises:[
+    {type:"mcq", title:"Trắc nghiệm từ vựng", tag:"5 câu", desc:"Chọn đáp án đúng nhất.", questions:[
+      {q:'"什么" nghĩa là gì?', opts:["Ai","Gì, cái gì","Nào","Mấy"], ans:1},
+      {q:'"名字" nghĩa là gì?', opts:["Tên","Người","Học sinh","Thầy giáo"], ans:0},
+      {q:'"老师" nghĩa là gì?', opts:["Học sinh","Thầy/cô giáo","Bạn bè","Người"], ans:1},
+      {q:'"吗" có chức năng gì trong câu?', opts:["Phủ định","Trợ từ tạo câu hỏi ở cuối câu","Đại từ chỉ người","Liên từ"], ans:1},
+      {q:'"学生" nghĩa là gì?', opts:["Thầy giáo","Học sinh","Bạn học","Người Trung Quốc"], ans:1},
+    ]},
+    {type:"blank", title:"Điền vào chỗ trống", tag:"5 câu", desc:"Dùng các từ: 叫 / 什么 / 是 / 老师 / 吗 / 学生", questions:[
+      {q:'你____什么名字？(Bạn tên là gì?)', ans:["叫","jiào","jiao"]},
+      {q:'我____中国人。(Tôi là người Trung Quốc.)', ans:["是","shì","shi"]},
+      {q:'你是老师____？(Bạn là giáo viên phải không?)', ans:["吗","ma"]},
+      {q:'她是我的汉语____。(Cô ấy là giáo viên tiếng Trung của tôi.)', ans:["老师","lǎoshī","laoshi"]},
+      {q:'我不是老师，我是____。(Tôi không phải giáo viên, tôi là học sinh.)', ans:["学生","xuésheng","xuesheng"]},
+    ]},
+    {type:"mcq", title:"Ngữ pháp", tag:"5 câu", desc:"Vận dụng 3 điểm ngữ pháp đã học.", questions:[
+      {q:'Câu nào dùng đúng cấu trúc câu chữ "是"?', opts:["我不老师。","我不是老师。","我是不老师。","我老师是。"], ans:1},
+      {q:'Để hỏi "Bạn có phải là học sinh không?" ta nói:', opts:["你是学生？","你是学生吗？","你学生是吗？","你吗是学生？"], ans:1},
+      {q:'Trong câu "你叫什么名字?", từ "什么" đóng vai trò gì?', opts:["Chủ ngữ","Làm tân ngữ, kết hợp với danh từ phía sau","Vị ngữ","Trạng ngữ"], ans:1},
+      {q:'Câu phủ định của "我是学生。" là?', opts:["我不是学生。","我是不学生。","我没是学生。","我不学生是。"], ans:0},
+      {q:'Chọn câu đúng ngữ pháp:', opts:["你叫什么名字吗？","你叫什么名字？","你是叫什么名字？","什么你叫名字？"], ans:1},
+    ]},
+    {type:"match", title:"Nối câu hỏi — câu trả lời", tag:"4 câu", desc:"Chọn đáp án đúng cho mỗi ô ở cột phải.",
+      left:["你叫什么名字？","你是老师吗？","你是中国人吗？","你是学生吗？"],
+      options:["我叫李月。","我不是老师，我是学生。","我不是中国人，我是美国人。","我是学生。"],
+      ans:[0,1,2,3]
+    },
+    {type:"order", title:"Sắp xếp từ thành câu đúng", tag:"4 câu", desc:"Sắp xếp các từ cho trước thành câu hoàn chỉnh.", questions:[
+      {words:["名字","什么","你","叫"], ans:"你叫什么名字"},
+      {words:["老师","是","我","不"], ans:"我不是老师"},
+      {words:["吗","你","学生","是"], ans:"你是学生吗"},
+      {words:["是","我","美国人"], ans:"我是美国人"},
+    ]},
+  ]
+},
+{
+  id:4,
+  tab:"Bài 4",
+  cnTitle:"她是我的汉语老师。", pinyinTitle:"Tā shì wǒ de Hànyǔ lǎoshī.", vnTitle:"Cô ấy là cô giáo dạy tôi tiếng Trung Quốc.",
+  dialogues:[
+    {a:{cn:"她是谁？",py:"Tā shì shéi?",vn:"Cô ấy là ai vậy?"}, b:{cn:"她是我的汉语老师，她叫李月。",py:"Tā shì wǒ de Hànyǔ lǎoshī, tā jiào Lǐ Yuè.",vn:"Đó là cô giáo dạy tôi tiếng Trung Quốc, cô tên là Lý Nguyệt."}},
+    {a:{cn:"你是哪国人？",py:"Nǐ shì nǎ guó rén?",vn:"Anh là người nước nào?"}, b:{cn:"我是美国人，你呢？",py:"Wǒ shì Měiguó rén, nǐ ne?",vn:"Tôi là người Mỹ, còn cô?"}},
+    {a:{cn:"他是谁？",py:"Tā shì shéi?",vn:"Anh ấy là ai thế?"}, b:{cn:"他是我同学。她不是我同学，她是我朋友。",py:"Tā shì wǒ tóngxué. Tā bú shì wǒ tóngxué, tā shì wǒ péngyou.",vn:"Đó là bạn cùng lớp của tôi. Còn cô ấy không phải bạn cùng lớp, cô ấy là bạn tôi."}},
+  ],
+  vocab:[
+    ["她","tā","đại từ","cô ấy, bà ấy"],
+    ["谁","shéi","đại từ","ai"],
+    ["的","de","trợ từ","dùng sau định ngữ (chỉ sở hữu)"],
+    ["汉语","Hànyǔ","danh từ","tiếng Trung Quốc"],
+    ["哪","nǎ","đại từ","nào"],
+    ["国","guó","danh từ","quốc gia, đất nước"],
+    ["呢","ne","trợ từ","dùng cuối câu hỏi"],
+    ["他","tā","đại từ","anh ấy, ông ấy"],
+    ["同学","tóngxué","danh từ","bạn cùng lớp"],
+    ["朋友","péngyou","danh từ","bạn"],
+  ],
+  grammarHTML:`
+    <div class="grammar-point">
+      <div class="gp-title">1. Đại từ nghi vấn "谁", "哪"</div>
+      <div class="gp-vn">谁 dùng để hỏi về người. 哪 dùng trong câu hỏi theo cấu trúc: <b>哪 + lượng từ/danh từ + danh từ</b>.</div>
+      <ul>
+        <li class="ex-cn">她是谁？</li>
+        <li class="ex-cn">你是哪国人？</li>
+      </ul>
+    </div>
+    <div class="grammar-point">
+      <div class="gp-title">2. Trợ từ kết cấu "的"</div>
+      <div class="gp-vn">Cấu trúc <b>Danh từ/Đại từ + 的 + Danh từ</b> biểu thị quan hệ sở hữu. Khi danh từ đứng sau là từ chỉ người thân hoặc cách xưng hô với người thân, "的" có thể được lược bỏ.</div>
+      <ul>
+        <li class="ex-cn">李月是我的老师。</li>
+        <li class="ex-cn">这是我的书。</li>
+        <li class="ex-cn">她不是我同学，她是我朋友。</li>
+      </ul>
+    </div>
+    <div class="grammar-point">
+      <div class="gp-title">3. Trợ từ nghi vấn "呢" (1)</div>
+      <div class="gp-vn">呢 dùng sau danh từ/đại từ để đặt câu hỏi nhằm hỏi tiếp về thông tin đã được đề cập ở câu trước. Mẫu câu thường gặp: <b>A ......，B 呢？</b></div>
+      <ul>
+        <li class="ex-cn">我不是老师，我是学生。你呢？</li>
+        <li class="ex-cn">她叫李月。他呢？</li>
+      </ul>
+    </div>`,
+  phoneticsHTML:`<div class="note-box"><b>Thanh mẫu:</b> zh ch sh r. Phân biệt vận mẫu mũi trước <b>n</b> và mũi sau <b>ng</b>.<br><br>
+  <b>Biến điệu "一" (yī):</b> Trước âm tiết thanh 1/2/3 → 一 đọc thành thanh 4 (yì zhāng); trước âm tiết thanh 4 → 一 đọc thành thanh 2 (yí dìng); khi đứng riêng hoặc biểu thị số đếm thì không đổi thanh (dì yī).<br><br>
+  <b>Quy tắc dùng y, w:</b> Khi âm tiết không có thanh mẫu và bắt đầu bằng i/u/ü, cần thêm y hoặc w khi viết phiên âm (VD: i→yi, u→wu, ü→yu).</div>`,
+  hanziHTML:`<div class="note-box"><b>Nét cơ bản:</b> 竖弯钩 (sổ cong móc), 横折弯钩 (ngang gập cong móc).<br><b>Chữ độc thể:</b> 七 (bảy), 儿 (con trai), 几 (mấy), 九 (chín).<br><b>Thứ tự nét:</b> từ trên xuống dưới, từ trái sang phải.</div>`,
+  exercises:[
+    {type:"mcq", title:"Trắc nghiệm từ vựng", tag:"5 câu", desc:"Chọn đáp án đúng nhất.", questions:[
+      {q:'"谁" nghĩa là gì?', opts:["Gì","Ai","Nào","Mấy"], ans:1},
+      {q:'"的" là loại từ gì?', opts:["Đại từ","Trợ từ kết cấu (chỉ sở hữu)","Động từ","Lượng từ"], ans:1},
+      {q:'"汉语" nghĩa là gì?', opts:["Tiếng Anh","Tiếng Trung Quốc","Người Trung Quốc","Nước Trung Quốc"], ans:1},
+      {q:'"同学" nghĩa là gì?', opts:["Thầy giáo","Bạn cùng lớp","Bạn thân","Người nhà"], ans:1},
+      {q:'"呢" trong câu "你呢?" dùng để làm gì?', opts:["Phủ định","Hỏi tiếp dựa trên điều đã nói trước đó","Chỉ sở hữu","Chỉ số nhiều"], ans:1},
+    ]},
+    {type:"blank", title:"Điền vào chỗ trống", tag:"5 câu", desc:"Dùng các từ: 她 / 谁 / 的 / 哪 / 呢 / 同学", questions:[
+      {q:'她是____？(Cô ấy là ai?)', ans:["谁","shéi","shei"]},
+      {q:'她是我____汉语老师。(Cô ấy là giáo viên tiếng Trung của tôi.)', ans:["的","de"]},
+      {q:'你是____国人？(Bạn là người nước nào?)', ans:["哪","nǎ","na"]},
+      {q:'我是美国人，你____？(Tôi là người Mỹ, còn bạn?)', ans:["呢","ne"]},
+      {q:'他是我____，不是我朋友。(Anh ấy là bạn cùng lớp tôi, không phải bạn tôi.)', ans:["同学","tóngxué","tongxue"]},
+    ]},
+    {type:"mcq", title:"Ngữ pháp", tag:"5 câu", desc:"Vận dụng 3 điểm ngữ pháp đã học.", questions:[
+      {q:'Cấu trúc đúng khi dùng "哪" để hỏi quốc tịch là?', opts:["哪 + danh từ","哪 + lượng từ/danh từ + danh từ","Danh từ + 哪","哪吗"], ans:1},
+      {q:'Câu nào dùng "的" đúng để chỉ sở hữu?', opts:["我的老师","我老师的","的我老师","老师我的"], ans:0},
+      {q:'Trường hợp nào có thể lược bỏ "的"?', opts:["Khi danh từ sau là đồ vật","Khi danh từ sau chỉ người thân/xưng hô quen thuộc","Luôn luôn phải có 的","Không bao giờ được lược bỏ"], ans:1},
+      {q:'Chọn câu dùng "呢" đúng theo mẫu "A......，B呢？":', opts:["我是学生，你呢？","我呢是学生","呢你是学生","你是呢学生"], ans:0},
+      {q:'"她是谁？" và "她是哪国人？" khác nhau ở điểm nào?', opts:["Không khác gì","'谁' hỏi về danh tính người, '哪'+danh từ hỏi về quốc gia/loại","Cả hai đều hỏi tên","Cả hai đều hỏi tuổi"], ans:1},
+    ]},
+    {type:"match", title:"Nối câu hỏi — câu trả lời", tag:"4 câu", desc:"Chọn đáp án đúng cho mỗi ô ở cột phải.",
+      left:["她是谁？","你是哪国人？","他是你同学吗？","这是谁的书？"],
+      options:["她是我的汉语老师。","我是中国人。","他不是我同学，他是我朋友。","这是我的书。"],
+      ans:[0,1,2,3]
+    },
+    {type:"order", title:"Sắp xếp từ thành câu đúng", tag:"4 câu", desc:"Sắp xếp các từ cho trước thành câu hoàn chỉnh.", questions:[
+      {words:["老师","汉语","我的","是","她"], ans:"她是我的汉语老师"},
+      {words:["哪","你","人","国","是"], ans:"你是哪国人"},
+      {words:["同学","我","是","他"], ans:"他是我同学"},
+      {words:["朋友","是","我","她"], ans:"她是我朋友"},
+    ]},
+  ]
+},
+{
+  id:5,
+  tab:"Bài 5",
+  cnTitle:"她女儿今年二十岁。", pinyinTitle:"Tā nǚ'ér jīnnián èrshí suì.", vnTitle:"Con gái của cô ấy năm nay 20 tuổi.",
+  dialogues:[
+    {a:{cn:"你家有几口人？",py:"Nǐ jiā yǒu jǐ kǒu rén?",vn:"Nhà anh có mấy người vậy?"}, b:{cn:"我家有三口人。",py:"Wǒ jiā yǒu sān kǒu rén.",vn:"Nhà tôi có ba người."}},
+    {a:{cn:"你女儿几岁了？",py:"Nǐ nǚ'ér jǐ suì le?",vn:"Con gái của cô mấy tuổi rồi?"}, b:{cn:"她今年四岁了。",py:"Tā jīnnián sì suì le.",vn:"Năm nay cháu được bốn tuổi rồi."}},
+    {a:{cn:"李老师多大了？",py:"Lǐ lǎoshī duō dà le?",vn:"Cô Lý bao nhiêu tuổi rồi?"}, b:{cn:"她今年50岁了。她女儿今年20岁。",py:"Tā jīnnián wǔshí suì le. Tā nǚ'ér jīnnián èrshí suì.",vn:"Năm nay cô ấy 50 tuổi rồi. Con gái cô ấy năm nay 20 tuổi."}},
+  ],
+  vocab:[
+    ["家","jiā","danh từ","nhà"],
+    ["有","yǒu","động từ","có"],
+    ["口","kǒu","lượng từ","dùng để đếm người trong nhà"],
+    ["女儿","nǚ'ér","danh từ","con gái"],
+    ["几","jǐ","đại từ","mấy"],
+    ["岁","suì","lượng từ","tuổi"],
+    ["了","le","trợ từ","chỉ sự thay đổi/tình huống mới"],
+    ["今年","jīnnián","danh từ","năm nay"],
+    ["多","duō","phó từ","chỉ mức độ"],
+    ["大","dà","tính từ","lớn"],
+  ],
+  vocabExtra:[
+    ["爷爷","yéye","ông nội"],["奶奶","nǎinai","bà nội"],["爸爸","bàba","cha"],["妈妈","māma","mẹ"],
+    ["哥哥","gēge","anh trai"],["姐姐","jiějie","chị gái"],["弟弟","dìdi","em trai"],["妹妹","mèimei","em gái"],
+  ],
+  grammarHTML:`
+    <div class="grammar-point">
+      <div class="gp-title">1. Đại từ nghi vấn "几"</div>
+      <div class="gp-vn">几 dùng để hỏi số lượng, thường dùng khi đáp án ở mức dưới 10.</div>
+      <ul>
+        <li class="ex-cn">你有几个汉语老师？</li>
+        <li class="ex-cn">李老师家有几口人？</li>
+        <li class="ex-cn">你女儿几岁了？</li>
+      </ul>
+    </div>
+    <div class="grammar-point">
+      <div class="gp-title">2. Số đếm dưới 100</div>
+      <div class="gp-vn">10 = 十, 20 = 二十, 30 = 三十... 90 = 九十. Số 11-19 = 十 + X (十九 = 19). Số hàng chục khác = X十 + Y (二十三 = 23, 五十六 = 56).</div>
+    </div>
+    <div class="grammar-point">
+      <div class="gp-title">3. Trợ từ "了" biểu thị sự thay đổi</div>
+      <div class="gp-vn">了 đặt ở cuối câu, biểu thị sự thay đổi hoặc sự xuất hiện của một tình huống mới.</div>
+      <ul>
+        <li class="ex-cn">李老师今年50岁了。</li>
+        <li class="ex-cn">我朋友的女儿今年四岁了。</li>
+      </ul>
+    </div>
+    <div class="grammar-point">
+      <div class="gp-title">4. "多 + 大" biểu thị nghi vấn (hỏi tuổi)</div>
+      <div class="gp-vn">"多 + 大" dùng trong câu để hỏi về tuổi tác.</div>
+      <ul>
+        <li class="ex-cn">你多大了？</li>
+        <li class="ex-cn">你女儿今年多大了？</li>
+      </ul>
+    </div>`,
+  phoneticsHTML:`<div class="note-box"><b>Nhi hoá âm (儿化):</b> "儿" có thể kết hợp với âm tiết đứng trước tạo thành một âm "cuốn lưỡi"; khi viết pinyin thêm "r" vào sau (VD: 小鸟儿 xiǎo niǎor).<br><br>
+  <b>Phân biệt phụ âm bật hơi / không bật hơi:</b> b–p, d–t, g–k, j–q, z–c, zh–ch (âm đứng trước không bật hơi, âm đứng sau bật hơi).<br><br>
+  <b>Dấu cách âm (’):</b> Dùng khi âm tiết bắt đầu bằng a, o, e đứng sau một âm tiết khác để tránh nhầm lẫn ranh giới âm tiết. VD: pí'ǎo (皮袄 - áo khoác da).</div>`,
+  hanziHTML:`<div class="note-box"><b>Nét cơ bản:</b> 横撇 (ngang phẩy), 撇点 (phẩy chấm).<br><b>Chữ độc thể:</b> 水 (nước), 女 (nữ), 了 (rồi), 大 (lớn).<br><b>Thứ tự nét:</b> ngoài trước trong sau (四, 国); ở giữa trước hai bên sau (小, 水).</div>`,
+  cultureHTML:`<div class="culture-box"><b>文化 Văn hóa — Cách hỏi tuổi của người Trung Quốc:</b><br>
+  Đối với trẻ em dưới 10 tuổi, thường hỏi: <i>你今年几岁了？</i><br>
+  Đối với người trẻ hoặc ngang tuổi mình, thường hỏi: <i>你今年多大了？</i><br>
+  Đối với người lớn tuổi, để thể hiện sự kính trọng, dùng câu: <i>您今年多大年纪了？</i></div>`,
+  exercises:[
+    {type:"mcq", title:"Trắc nghiệm từ vựng", tag:"5 câu", desc:"Chọn đáp án đúng nhất.", questions:[
+      {q:'"家" nghĩa là gì?', opts:["Người","Nhà","Tuổi","Năm nay"], ans:1},
+      {q:'"有" nghĩa là gì?', opts:["Là","Có","Không","Mấy"], ans:1},
+      {q:'"女儿" nghĩa là gì?', opts:["Con trai","Con gái","Mẹ","Chị gái"], ans:1},
+      {q:'"岁" dùng để làm gì?', opts:["Đếm người","Đếm tuổi","Đếm đồ vật","Đếm sách"], ans:1},
+      {q:'"了" trong câu "她今年20岁了" biểu thị điều gì?', opts:["Phủ định","Nghi vấn","Sự thay đổi/tình huống mới","Số nhiều"], ans:2},
+    ]},
+    {type:"blank", title:"Điền vào chỗ trống", tag:"5 câu", desc:"Dùng các từ: 家 / 有 / 几 / 今年 / 多大", questions:[
+      {q:'你____有几口人？(Nhà bạn có mấy người?)', ans:["家","jiā","jia"]},
+      {q:'我家____三口人。(Nhà tôi có ba người.)', ans:["有","yǒu","you"]},
+      {q:'你____岁了？(Bạn mấy tuổi rồi?)', ans:["几","jǐ","ji"]},
+      {q:'她____四岁了。(Năm nay cô ấy 4 tuổi rồi.)', ans:["今年","jīnnián","jinnian"]},
+      {q:'李老师____了？(Cô Lý bao nhiêu tuổi rồi?)', ans:["多大","duō dà","duoda"]},
+    ]},
+    {type:"mcq", title:"Ngữ pháp", tag:"5 câu", desc:"Vận dụng 4 điểm ngữ pháp đã học.", questions:[
+      {q:'"几" thường dùng để hỏi số lượng trong khoảng nào?', opts:["Trên 100","Dưới 10","Từ 50-100","Không giới hạn"], ans:1},
+      {q:'Số "23" trong tiếng Trung viết là?', opts:["二三","二十三","三十二","二百三"], ans:1},
+      {q:'Trợ từ nào đặt cuối câu để biểu thị sự thay đổi/tình huống mới?', opts:["吗","呢","了","的"], ans:2},
+      {q:'Để hỏi tuổi một người lớn tuổi một cách lịch sự, dùng cấu trúc nào?', opts:["你几岁？","你多大了？","您今年多大年纪了？","你是谁？"], ans:2},
+      {q:'Câu "你女儿今年多大了?" hỏi về điều gì?', opts:["Tên con gái","Tuổi con gái","Nghề nghiệp con gái","Số người trong nhà"], ans:1},
+    ]},
+    {type:"match", title:"Nối câu hỏi — câu trả lời", tag:"4 câu", desc:"Chọn đáp án đúng cho mỗi ô ở cột phải.",
+      left:["你家有几口人？","你女儿几岁了？","李老师多大了？","她女儿呢？"],
+      options:["我家有三口人。","她今年四岁了。","她今年50岁了。","她今年20岁。"],
+      ans:[0,1,2,3]
+    },
+    {type:"order", title:"Sắp xếp từ thành câu đúng", tag:"4 câu", desc:"Sắp xếp các từ cho trước thành câu hoàn chỉnh.", questions:[
+      {words:["人","口","几","有","你家"], ans:"你家有几口人"},
+      {words:["三","人","口","有","我家"], ans:"我家有三口人"},
+      {words:["了","岁","几","你女儿"], ans:"你女儿几岁了"},
+      {words:["了","多大","你"], ans:"你多大了"},
+    ]},
+  ]
+},
+];
+
+/* ================= HELPERS ================= */
+function norm(s){
+  return s.toLowerCase().replace(/[\s，,。.！!？?'’]/g,"");
+}
+function pinyinFold(s){
+  return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[\s'’]/g,"");
+}
+function answerMatches(userVal, acceptedList){
+  const u = norm(userVal);
+  const uFold = pinyinFold(userVal);
+  return acceptedList.some(a=>{
+    const an = norm(a); const aFold = pinyinFold(a);
+    return u===an || uFold===aFold;
+  });
+}
+
+/* ================= RENDER ================= */
+const tabNav = document.getElementById('tabNav');
+const mainEl = document.getElementById('main');
+
+lessons.forEach((L,i)=>{
+  const btn = document.createElement('button');
+  btn.className = 'tab-btn' + (i===0?' active':'');
+  btn.textContent = L.tab;
+  btn.onclick = ()=>showLesson(i);
+  btn.id = 'tabbtn-'+L.id;
+  tabNav.appendChild(btn);
+});
+
+function vocabTable(rows){
+  let html = `<table class="vocab"><thead><tr><th>Chữ Hán</th><th>Pinyin</th><th>Từ loại</th><th>Nghĩa</th></tr></thead><tbody>`;
+  rows.forEach(r=>{
+    html += `<tr><td class="cn">${r[0]}</td><td class="py">${r[1]}</td><td class="pos">${r[2]}</td><td>${r[3]}</td></tr>`;
+  });
+  html += `</tbody></table>`;
+  return html;
+}
+
+function dialogueHTML(d){
+  let html = '';
+  d.forEach((line,idx)=>{
+    html += `<div class="dialogue">
+      <div class="line"><span class="who">A:</span><span class="cn">${line.a.cn}</span><span class="py">${line.a.py}</span></div>
+      <div class="vn">${line.a.vn}</div>
+      <div class="line"><span class="who">B:</span><span class="cn">${line.b.cn}</span><span class="py">${line.b.py}</span></div>
+      <div class="vn">${line.b.vn}</div>
+    </div>`;
+  });
+  return html;
+}
+
+function exerciseHTML(lessonId, ex, exIdx){
+  const prefix = `l${lessonId}e${exIdx}`;
+  let inner = '';
+
+  if(ex.type==='mcq'){
+    ex.questions.forEach((q,qi)=>{
+      inner += `<div class="q" data-qi="${qi}">
+        <div class="q-text">${qi+1}. <span class="cn">${q.q}</span></div>
+        <div class="options">`;
+      q.opts.forEach((opt,oi)=>{
+        inner += `<label class="opt" data-oi="${oi}">
+          <input type="radio" name="${prefix}q${qi}" value="${oi}"> <span>${opt}</span>
+        </label>`;
+      });
+      inner += `</div><div class="feedback" id="${prefix}fb${qi}"></div></div>`;
+    });
+  }
+  else if(ex.type==='blank'){
+    ex.questions.forEach((q,qi)=>{
+      inner += `<div class="q" data-qi="${qi}">
+        <div class="q-text">${qi+1}. ${q.q}</div>
+        <input type="text" class="blank-input" id="${prefix}i${qi}" placeholder="Nhập câu trả lời...">
+        <div class="feedback" id="${prefix}fb${qi}"></div>
+      </div>`;
+    });
+  }
+  else if(ex.type==='match'){
+    ex.left.forEach((l,li)=>{
+      inner += `<div class="match-row" data-li="${li}">
+        <div class="left-txt"><span class="cn">${l}</span></div>
+        <select class="match-select" id="${prefix}s${li}">
+          <option value="">— chọn đáp án —</option>
+          ${ex.options.map((o,oi)=>`<option value="${oi}">${o}</option>`).join('')}
+        </select>
+        <span class="feedback" id="${prefix}fb${li}" style="display:inline-block;margin-top:0;"></span>
+      </div>`;
+    });
+  }
+  else if(ex.type==='order'){
+    ex.questions.forEach((q,qi)=>{
+      inner += `<div class="q" data-qi="${qi}">
+        <div class="q-text">${qi+1}. Sắp xếp: <span class="cn" style="color:var(--orange-dark)">${q.words.join(' / ')}</span></div>
+        <input type="text" class="blank-input" id="${prefix}i${qi}" placeholder="Gõ câu đúng, VD: 你好" style="width:280px;">
+        <div class="feedback" id="${prefix}fb${qi}"></div>
+      </div>`;
+    });
+  }
+
+  return `<div class="ex-block" id="${prefix}">
+    <div class="ex-title">${ex.title} <span class="tag">${ex.tag}</span></div>
+    <div class="ex-desc">${ex.desc}</div>
+    ${inner}
+    <button class="check-btn" onclick="gradeExercise('${lessonId}',${exIdx})">✅ Kiểm tra đáp án</button>
+    <div class="score-line" id="${prefix}score"></div>
+  </div>`;
+}
+
+function renderLesson(L){
+  let html = `<div class="lesson-head">
+      <h2>Bài ${L.id}</h2>
+      <div class="cn-title hanzi">${L.cnTitle} <span style="font-size:16px;color:var(--sub);font-weight:400;">${L.pinyinTitle}</span></div>
+      <div class="vn-title">${L.vnTitle}</div>
+    </div>
+
+    <div class="section-title"><span class="num">1</span> Hội thoại mẫu <small>课文</small></div>
+    ${dialogueHTML(L.dialogues)}
+
+    <div class="section-title"><span class="num">2</span> Từ vựng <small>词汇</small></div>
+    <div class="card">${vocabTable(L.vocab)}</div>
+    ${L.vocabExtra ? `<div class="card"><h4>Từ vựng bổ sung — Người thân trong gia đình</h4>${vocabTable(L.vocabExtra.map(v=>[v[0],v[1],'danh từ',v[2]]))}</div>` : ''}
+
+    <div class="section-title"><span class="num">3</span> Ngữ pháp trọng tâm <small>注释</small></div>
+    ${L.grammarHTML}
+
+    <div class="section-title"><span class="num">4</span> Ngữ âm cần lưu ý <small>拼音</small></div>
+    ${L.phoneticsHTML}
+
+    <div class="section-title"><span class="num">5</span> Chữ Hán <small>汉字</small></div>
+    ${L.hanziHTML}
+    ${L.cultureHTML ? `<div class="section-title"><span class="num">6</span> Văn hóa <small>文化</small></div>${L.cultureHTML}` : ''}
+
+    <div class="section-title"><span class="num">✏️</span> Bài tập ôn luyện</div>
+  `;
+
+  L.exercises.forEach((ex,exIdx)=>{
+    html += exerciseHTML(L.id, ex, exIdx);
+  });
+
+  html += `<div class="lesson-summary">
+    <div>Tổng điểm bài ${L.id} sau khi kiểm tra tất cả bài tập:</div>
+    <div class="total-score" id="l${L.id}total">— / —</div>
+    <button onclick="gradeAll(${L.id})">🎯 Kiểm tra toàn bộ Bài ${L.id}</button>
+  </div>`;
+
+  return html;
+}
+
+function showLesson(i){
+  document.querySelectorAll('.tab-btn').forEach((b,bi)=>b.classList.toggle('active', bi===i));
+  document.querySelectorAll('.lesson').forEach((l,li)=>l.classList.toggle('active', li===i));
+}
+
+lessons.forEach((L,i)=>{
+  const sec = document.createElement('section');
+  sec.className = 'lesson' + (i===0?' active':'');
+  sec.id = 'lesson-'+L.id;
+  sec.innerHTML = renderLesson(L);
+  mainEl.appendChild(sec);
+});
+
+/* ================= GRADING ================= */
+function gradeExercise(lessonId, exIdx){
+  const L = lessons.find(l=>l.id==lessonId);
+  const ex = L.exercises[exIdx];
+  const prefix = `l${lessonId}e${exIdx}`;
+  let correct = 0, total = 0;
+
+  if(ex.type==='mcq'){
+    ex.questions.forEach((q,qi)=>{
+      total++;
+      const sel = document.querySelector(`input[name="${prefix}q${qi}"]:checked`);
+      const fb = document.getElementById(`${prefix}fb${qi}`);
+      const optEls = document.querySelectorAll(`#${prefix} .q[data-qi="${qi}"] .opt`);
+      optEls.forEach((el,oi)=>{
+        el.classList.remove('correct','wrong');
+        if(oi===q.ans) el.classList.add('correct');
+        else if(sel && parseInt(sel.value)===oi) el.classList.add('wrong');
+      });
+      if(sel && parseInt(sel.value)===q.ans){
+        correct++;
+        fb.textContent = '✔ Chính xác!';
+        fb.className = 'feedback show ok';
+      } else {
+        fb.textContent = sel ? `✘ Chưa đúng. Đáp án đúng: ${q.opts[q.ans]}` : `Chưa chọn đáp án. Đáp án đúng: ${q.opts[q.ans]}`;
+        fb.className = 'feedback show bad';
+      }
+    });
+  }
+  else if(ex.type==='blank' || ex.type==='order'){
+    ex.questions.forEach((q,qi)=>{
+      total++;
+      const input = document.getElementById(`${prefix}i${qi}`);
+      const fb = document.getElementById(`${prefix}fb${qi}`);
+      const acceptedList = ex.type==='blank' ? q.ans : [q.ans];
+      const ok = input.value.trim() !== '' && answerMatches(input.value, acceptedList);
+      input.classList.remove('correct','wrong');
+      if(ok){
+        correct++;
+        input.classList.add('correct');
+        fb.textContent = '✔ Chính xác!';
+        fb.className = 'feedback show ok';
+      } else {
+        input.classList.add('wrong');
+        const correctAns = ex.type==='blank' ? q.ans[0] : q.ans;
+        fb.textContent = `✘ Chưa đúng. Đáp án đúng: ${correctAns}`;
+        fb.className = 'feedback show bad';
+      }
+    });
+  }
+  else if(ex.type==='match'){
+    ex.left.forEach((l,li)=>{
+      total++;
+      const sel = document.getElementById(`${prefix}s${li}`);
+      const fb = document.getElementById(`${prefix}fb${li}`);
+      const ok = sel.value !== '' && parseInt(sel.value)===ex.ans[li];
+      sel.style.borderColor = ok ? 'var(--green)' : 'var(--red)';
+      sel.style.background = ok ? 'var(--green-light)' : 'var(--red-light)';
+      if(ok){
+        correct++;
+        fb.textContent = '✔';
+        fb.className = 'feedback show ok';
+      } else {
+        fb.textContent = `✘ Đúng: ${ex.options[ex.ans[li]]}`;
+        fb.className = 'feedback show bad';
+      }
+    });
+  }
+
+  const scoreEl = document.getElementById(`${prefix}score`);
+  scoreEl.textContent = `Điểm: ${correct}/${total}`;
+  scoreEl.className = 'score-line show';
+  scoreEl.style.color = correct===total ? 'var(--green)' : 'var(--orange-dark)';
+
+  return {correct, total};
+}
+
+function gradeAll(lessonId){
+  const L = lessons.find(l=>l.id==lessonId);
+  let totalCorrect=0, totalAll=0;
+  L.exercises.forEach((ex,exIdx)=>{
+    const r = gradeExercise(lessonId, exIdx);
+    totalCorrect += r.correct;
+    totalAll += r.total;
+  });
+  const el = document.getElementById(`l${lessonId}total`);
+  el.textContent = `${totalCorrect} / ${totalAll} câu đúng`;
+  const pct = Math.round(100*totalCorrect/totalAll);
+  el.style.color = pct>=80 ? 'var(--green)' : (pct>=50 ? 'var(--orange-dark)' : 'var(--red)');
+}
+</script>
+</body>
+</html>
